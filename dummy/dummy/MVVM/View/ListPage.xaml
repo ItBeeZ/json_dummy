@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="dummy.MVVM.View.ListPage"
+             Title="ListPage">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <!-- Download Button -->
+            <Button x:Name="buttonLetolt"
+                    Text="Load Products"
+                    Clicked="buttonLetolt_Clicked"
+                    Margin="20"
+                    HeightRequest="50"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    FontSize="16"
+                    CornerRadius="25"/>
+
+            <!-- Activity Indicator -->
+            <ActivityIndicator x:Name="activityIndicator"
+                              IsVisible="False"
+                              IsRunning="False"
+                              Color="#2196F3"
+                              HorizontalOptions="Center"
+                              VerticalOptions="Center"/>
+
+            <!-- Products Collection -->
+            <CollectionView x:Name="collectionProducts"
+                           SelectionMode="Single"
+                           SelectionChanged="collectionProducts_SelectionChanged">
+
+                <CollectionView.EmptyView>
+                    <Label Text="Click 'Load Products' to fetch data"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Margin="20"
+                           TextColor="Gray"/>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Black"
+                               Padding="15"
+                               CornerRadius="10"
+                               HasShadow="True"
+                               Margin="10,5">
+                            <Grid ColumnDefinitions="Auto,*,Auto"
+                                  RowDefinitions="Auto,Auto,Auto,Auto">
+
+                                <!-- Thumbnail -->
+                                <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="0"
+                                       Source="{Binding thumbnail}"
+                                       WidthRequest="60"
+                                       HeightRequest="60"
+                                       Aspect="AspectFill"
+                                       Margin="0,0,15,0"/>
+
+                                <!-- Title -->
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding title}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       LineBreakMode="TailTruncation"/>
+
+                                <!-- Category and Brand -->
+                                <Label Grid.Row="1" Grid.Column="1"
+                                       Text="{Binding category}"
+                                       FontSize="12"
+                                       TextColor="Gray"/>
+
+                                <Label Grid.Row="1" Grid.Column="2"
+                                       Text="{Binding brand}"
+                                       FontSize="12"
+                                       TextColor="Gray"
+                                       HorizontalTextAlignment="End"/>
+
+                                <!-- Price and Rating -->
+                                <Label Grid.Row="2" Grid.Column="1"
+                                       Text="{Binding price, StringFormat='${0:F2}'}"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Green"/>
+
+                                <Label Grid.Row="2" Grid.Column="2"
+                                       Text="{Binding rating, StringFormat='★ {0:F1}'}"
+                                       FontSize="12"
+                                       TextColor="Orange"
+                                       HorizontalTextAlignment="End"
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -64,8 +64,15 @@
 
 	<ItemGroup>
 	  <Folder Include="MVVM\ModelView\" />
-	  <Folder Include="MVVM\View\" />
-	  <Folder Include="MVVM\Model\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="MVVM\View\DetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\View\ListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
